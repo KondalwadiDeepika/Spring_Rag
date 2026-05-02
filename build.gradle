@@ -1,0 +1,49 @@
+plugins {
+	id 'java'
+	// CORRECTED: Use a stable Spring Boot version compatible with Spring AI 1.0.0
+	id 'org.springframework.boot' version '3.2.7' 
+	id 'io.spring.dependency-management' version '1.1.7'
+}
+
+group = 'com.sohamkamani'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	toolchain {
+		// CORRECTED: Use a supported LTS Java version
+		languageVersion = JavaLanguageVersion.of(21)
+	}
+}
+
+repositories {
+	mavenCentral()
+	maven { url 'https://repo.spring.io/milestone' }
+	maven { url 'https://repo.spring.io/snapshot' }
+	maven {
+		name = 'Central Portal Snapshots'
+		url = 'https://central.sonatype.com/repository/maven-snapshots/'
+	}
+}
+
+ext {
+	set('springAiVersion', "1.0.0")
+}
+
+dependencies {
+  implementation 'org.springframework.boot:spring-boot-starter-web'
+  implementation 'org.springframework.ai:spring-ai-advisors-vector-store'
+  implementation 'org.springframework.ai:spring-ai-starter-model-openai'
+  implementation 'org.springframework.ai:spring-ai-starter-vector-store-pgvector'
+  testImplementation 'org.springframework.boot:spring-boot-starter-test'
+  testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+dependencyManagement {
+	imports {
+		mavenBom "org.springframework.ai:spring-ai-bom:${springAiVersion}"
+	}
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
