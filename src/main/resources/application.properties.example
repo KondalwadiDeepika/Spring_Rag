@@ -19,6 +19,7 @@ spring.ai.openai.chat.options.temperature=0
 spring.ai.openai.chat.options.max-tokens=80
 
 # PgVector
+spring.ai.openai.embedding.options.input-type=query
 spring.ai.vectorstore.pgvector.index-type=HNSW
 spring.ai.vectorstore.pgvector.distance-type=COSINE_DISTANCE
 spring.ai.vectorstore.pgvector.dimensions=768
