@@ -4,7 +4,9 @@ build/
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**/build/
 !**/src/test/**/build/
-
+# API Keys - Never push these
+src/main/resources/application.properties
+src/main/resources/application-prod.properties
 ### STS ###
 .apt_generated
 .classpath
